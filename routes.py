@@ -1,10 +1,14 @@
 from main import app
-from flask import render_template
+from flask import render_template, redirect, url_for
 
 @app.route('/')
-def hello_world():
-    return render_template('index.html')
+def homepage():
+    return redirect(url_for('login'))
 
-@app.route('/teste')
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/cadastro')
 def test():
-    return 'Hello, World!'
+    return render_template('cadastro.html')
