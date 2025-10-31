@@ -24,8 +24,6 @@ def cadastro():
             dadosFormularioCadastro['senha']
             )
         
-        print(dadosFormularioCadastro['nome'])
-        
     return render_template('cadastro.html')
 
 @app.route('/api/<idFornecedor>')
