@@ -57,4 +57,4 @@ def exibirFornecedores():
 #criarFornecedor('João Emanuel Souza Rodrigues', '02.336.124/0014-92', '21979405435', 'joao.rodrigues@global.komatsu', 'qwertyje123')
 #buscarFornecedor(1)
 #editarFornecedor(2,'João Emanuel Souza Rodrigues', '02.336.124/0014-92', 'joao.rodrigues@global.komatsu', 'qwertyje123')
-excluirFornecedor(1)
+#excluirFornecedor(1)
