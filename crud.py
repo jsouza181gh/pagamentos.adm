@@ -34,7 +34,27 @@ def excluirFornecedor(idFornecedor):
     session.delete(fornecedor)
     session.commit()
 
+def exibirFornecedores():
+    fornecedores = session.query(Fornecedor).all()
+    tabelaFornecedores = {
+    'id': [],
+    'nome': [],
+    'cnpj': [],
+    'telefone': [],
+    'email': [],
+    'senha': [],
+    }
+    for fornecedor in fornecedores:
+        tabelaFornecedores['id'].append(fornecedor.id)
+        tabelaFornecedores['nome'].append(fornecedor.nome)
+        tabelaFornecedores['cnpj'].append(fornecedor.cnpj)
+        tabelaFornecedores['telefone'].append(fornecedor.telefone)
+        tabelaFornecedores['email'].append(fornecedor.email)
+        tabelaFornecedores['senha'].append(fornecedor.senha)
+    
+    return tabelaFornecedores
+
 #criarFornecedor('João Emanuel Souza Rodrigues', '02.336.124/0014-92', '21979405435', 'joao.rodrigues@global.komatsu', 'qwertyje123')
 #buscarFornecedor(1)
 #editarFornecedor(2,'João Emanuel Souza Rodrigues', '02.336.124/0014-92', 'joao.rodrigues@global.komatsu', 'qwertyje123')
-#excluirFornecedor(1)
+excluirFornecedor(1)
