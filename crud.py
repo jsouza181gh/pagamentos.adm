@@ -11,13 +11,17 @@ def criarFornecedor(novoNome, novoCnpj,novoTelefone, novoEmail, novaSenha):
     session.add(novoFornecedor)
     session.commit()
 
-def buscarFornecedor(idFornecedor):
-    fornecedor = session.query(Fornecedor).filter_by(id=idFornecedor).first()
-    return {'Nome':fornecedor.nome,
-            'CNPJ': fornecedor.cnpj,
-            'Telefone': fornecedor.telefone,
-            'E-mail': fornecedor.email,
-            }
+def buscarFornecedor(idFornecedor=None, emailFornecedor=None):
+    if not idFornecedor == None:
+        fornecedor = session.query(Fornecedor).filter_by(id=idFornecedor).first()
+        return {'Nome':fornecedor.nome,
+                'CNPJ': fornecedor.cnpj,
+                'Telefone': fornecedor.telefone,
+                'E-mail': fornecedor.email,
+                }
+    elif not emailFornecedor == None:
+        fornecedor = session.query(Fornecedor).filter_by(email=emailFornecedor).first()
+        return fornecedor.senha
 
 def editarFornecedor(idFornecedor, novoNome, novoCnpj, novoTelefone, novoEmail, novaSenha):
     fornecedor = session.query(Fornecedor).filter_by(id=idFornecedor).first()
@@ -54,7 +58,7 @@ def exibirFornecedores():
     
     return tabelaFornecedores
 
-#criarFornecedor('João Emanuel Souza Rodrigues', '02.336.124/0014-92', '21979405435', 'joao.rodrigues@global.komatsu', 'qwertyje123')
-#buscarFornecedor(1)
+#criarFornecedor('João Emanuel Souza Rodrigues', '02.336.124/0014-92', '21979405435', 'joao.rodrigues@global.komatsu', '$2b$10$UxYdc6DBeD4gn3zPSEcFnOkzsaZxeQxWF4KAvc1FCszxRocojPRXu')
+#print(buscarFornecedor(idFornecedor=2))
 #editarFornecedor(2,'João Emanuel Souza Rodrigues', '02.336.124/0014-92', 'joao.rodrigues@global.komatsu', 'qwertyje123')
-#excluirFornecedor(1)
+#excluirFornecedor(3)

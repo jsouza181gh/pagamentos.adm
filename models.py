@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy import create_engine, Column, Integer, String, LargeBinary
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 db = create_engine('sqlite:///pagamentosADM.db')
@@ -10,7 +10,7 @@ class Fornecedor(Base):
     __tablename__ = 'fornecedores'
     id = Column('id', Integer, primary_key=True, autoincrement=True)
     nome = Column('nome', String(100), nullable=False)
-    cnpj = Column('cnpj', String(20), unique=True, nullable=False)
+    cnpj = Column('cnpj', String(20), nullable=False)
     telefone = Column('telefone', String(30), nullable=False)
     email = Column('email', String(100), unique=True, nullable=False)
     senha = Column('senha', String(100), nullable=False)
