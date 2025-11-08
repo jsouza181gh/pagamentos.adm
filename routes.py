@@ -48,6 +48,14 @@ def cadastro():
 def api(idFornecedor):
     return buscarFornecedor(idFornecedor=idFornecedor)
 
-@app.route('/db')
-def db():
+@app.route('/db/fornecedores')
+def tabelaFornecedores():
     return exibirFornecedores()
+
+@app.route('/db/colaboradores')
+def tabelaColaboradores():
+    return exibirColaboradores()
+
+@app.route('/teste')
+def teste():
+    return render_template('cadastroTeste.html')

@@ -22,4 +22,17 @@ class Fornecedor(Base):
         self.email = email
         self.senha = senha
 
+class Colaborador(Base):
+    __tablename__ = 'colaboradores'
+    id = Column('id', Integer, primary_key=True, autoincrement=True)
+    nome = Column('nome', String(100), nullable=False)
+    matricula = Column('matricula', String(100), nullable=False)
+    email = Column('email', String(100), unique=True, nullable=False)
+    senha = Column('senha', String(100), nullable=False)
+
+    def __init__(self, nome, email, senha):
+        self.nome = nome
+        self.email = email
+        self.senha = senha
+
 Base.metadata.create_all(db)

@@ -1,4 +1,4 @@
-from models import Fornecedor, session
+from models import Fornecedor, Colaborador, session
 
 def criarFornecedor(novoNome, novoCnpj,novoTelefone, novoEmail, novaSenha):
     novoFornecedor = Fornecedor(
@@ -53,6 +53,24 @@ def exibirFornecedores():
         tabelaFornecedores['nome'].append(fornecedor.nome)
         tabelaFornecedores['cnpj'].append(fornecedor.cnpj)
         tabelaFornecedores['telefone'].append(fornecedor.telefone)
+        tabelaFornecedores['email'].append(fornecedor.email)
+        tabelaFornecedores['senha'].append(fornecedor.senha)
+    
+    return tabelaFornecedores
+
+def exibirColaboradores():
+    fornecedores = session.query(Colaborador).all()
+    tabelaFornecedores = {
+    'id': [],
+    'nome': [],
+    'matricula': [],
+    'email': [],
+    'senha': [],
+    }
+    for fornecedor in fornecedores:
+        tabelaFornecedores['id'].append(fornecedor.id)
+        tabelaFornecedores['nome'].append(fornecedor.nome)
+        tabelaFornecedores['matricula'].append(fornecedor.matricula)
         tabelaFornecedores['email'].append(fornecedor.email)
         tabelaFornecedores['senha'].append(fornecedor.senha)
     
