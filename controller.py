@@ -7,8 +7,18 @@ def criarFornecedor(novoNome, novoCnpj,novoTelefone, novoEmail, novaSenha):
         telefone=novoTelefone, 
         email=novoEmail, 
         senha=novaSenha
-        )
+    )
     session.add(novoFornecedor)
+    session.commit()
+
+def criarColaborador(novoNome, novaMatricula, novoEmail, novaSenha):
+    novoColaborador = Colaborador(
+        nome=novoNome,
+        matricula=novaMatricula,
+        email=novoEmail,
+        senha=novaSenha
+    )
+    session.add(novoColaborador)
     session.commit()
 
 def buscarFornecedor(idFornecedor=None, emailFornecedor=None):

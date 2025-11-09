@@ -30,8 +30,9 @@ class Colaborador(Base):
     email = Column('email', String(100), unique=True, nullable=False)
     senha = Column('senha', String(100), nullable=False)
 
-    def __init__(self, nome, email, senha):
+    def __init__(self, nome, matricula, email, senha):
         self.nome = nome
+        self.matricula = matricula
         self.email = email
         self.senha = senha
 
