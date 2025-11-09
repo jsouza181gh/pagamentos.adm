@@ -40,7 +40,7 @@
     }
 
     input {
-      width: 100%;
+      width: 93%;
       padding: 11px;
       border: 1px solid #ddd;
       border-radius: 6px;
@@ -72,7 +72,6 @@
       background-color: #0069d9;
     }
 
-    /* Container do switch */
     .switch-container {
       display: flex;
       align-items: center;
@@ -144,22 +143,19 @@
   <div class="card">
     <h2>Cadastro</h2>
 
-    <!-- Formulário de Fornecedor -->
     <form id="formFornecedor" method="POST" class="hidden">
-      <input type="text" name="nomeFornecedor" placeholder="Nome do Fornecedor" required>
-      <input type="text" name="cnpjFornecedor" placeholder="CNPJ" required>
-      <input type="tel" name="telefoneFornecedor" placeholder="Telefone" pattern="[0-9]{10,11}" required>
-      <input type="email" name="emailFornecedor" placeholder="E-mail" required>
+      <input type="text" name="nome" placeholder="Nome do Fornecedor" required>
+      <input type="text" name="cnpj/matricula" placeholder="CNPJ" required>
+      <input type="email" name="email" placeholder="E-mail" required>
       <input type="password" name="senha" placeholder="Senha" required>
       <input type="password" name="confirmar_senha" placeholder="Confirmar senha" required>
       <button type="submit" name="submit_button" value="enviar">Cadastrar</button>
     </form>
 
-    <!-- Formulário de Colaborador -->
     <form id="formColaborador" method="POST">
-      <input type="text" name="nomeColaborador" placeholder="Nome do Colaborador" required>
-      <input type="text" name="matriculaColaborador" placeholder="Matrícula" required>
-      <input type="email" name="emailColaborador" placeholder="E-mail" required>
+      <input type="text" name="nome" placeholder="Nome do Colaborador" required>
+      <input type="text" name="cnpj/matricula" placeholder="Matrícula" required>
+      <input type="email" name="email" placeholder="E-mail" required>
       <input type="password" name="senha" placeholder="Senha" required>
       <input type="password" name="confirmar_senha" placeholder="Confirmar senha" required>
       <button type="submit" name="submit_button" value="enviar">Cadastrar</button>
@@ -167,7 +163,7 @@
 
     <div class="switch-container">
       <label class="switch">
-        <input type="checkbox" id="toggle" name="chave" value="colaborador" form="formColaborador">
+        <input type="checkbox" id="toggle" name="colaborador" value="colaborador" form="formColaborador">
         <span class="slider"></span>
       </label>
       <span class="switch-label" id="switchText">Fornecedor</span>
@@ -180,19 +176,16 @@
     const formFornecedor = document.getElementById('formFornecedor');
     const switchText = document.getElementById('switchText');
 
-    // Estado inicial: mostra fornecedor
     toggle.checked = false;
     formFornecedor.classList.remove('hidden');
     formColaborador.classList.add('hidden');
 
     toggle.addEventListener('change', () => {
       if (toggle.checked) {
-        // Mostra formulário de colaborador
         formColaborador.classList.remove('hidden');
         formFornecedor.classList.add('hidden');
         switchText.textContent = 'Colaborador';
       } else {
-        // Mostra formulário de fornecedor
         formColaborador.classList.add('hidden');
         formFornecedor.classList.remove('hidden');
         switchText.textContent = 'Fornecedor';

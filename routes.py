@@ -1,7 +1,6 @@
-from controller import *
-from main import app
-from bcrypt import gensalt, hashpw, checkpw
 from flask import render_template, redirect, url_for, request
+from services import validarCadastro, validarLogin
+from main import app
 
 @app.route('/')
 def mainPage():
@@ -13,82 +12,29 @@ def homepage():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    dadosFormularioLogin = request.form
-    if request.form.get('submit_button') == 'enviar':
-        hashSenha = buscarFornecedor(emailFornecedor=dadosFormularioLogin['username'])
-        senha = dadosFormularioLogin['password']
-        if checkpw(senha.encode('utf-8'), hashSenha.encode('utf-8')):
+    if request.method == 'GET':
+        return render_template('login.html')
+    
+    elif request.method == 'POST':
+        if validarLogin(
+            request.form['email'],
+            request.form['senha']
+        ):
             return redirect(url_for('homepage'))
-        
-    return render_template('login.html')
+    
 
 @app.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
     if request.method == 'GET':
         return render_template('cadastro.html')
+    
     elif request.method == 'POST':
-        dadosFormularioCadastro = request.form
-        senha = dadosFormularioCadastro['senha']
-        confirmacaoSenha = dadosFormularioCadastro['confirmar_senha']
-        if senha == confirmacaoSenha:
-            salt = gensalt(rounds=10)
-            novaSenha = senha.encode("utf-8")
-            novaSenha = hashpw(novaSenha, salt)
-            novaSenha = novaSenha.decode("utf-8")
-            if 'chave' in dadosFormularioCadastro:
-                criarColaborador(
-                    dadosFormularioCadastro['nomeColaborador'],
-                    dadosFormularioCadastro['matriculaColaborador'],
-                    dadosFormularioCadastro['emailColaborador'],
-                    novaSenha
-                )
-            else:
-                criarFornecedor(
-                    dadosFormularioCadastro['nomeFornecedor'],
-                    dadosFormularioCadastro['cnpjFornecedor'],
-                    dadosFormularioCadastro['telefoneFornecedor'],
-                    dadosFormularioCadastro['emailFornecedor'],
-                    novaSenha
-                )
-            return redirect(url_for('login'))
-    
-    
-   # if request.form.get('submit_button') == 'enviar':
-       # 
-        #
-        #
-        #if senha == confirmacaoSenha:
-          #  salt = gensalt(rounds=10)
-          #  novaSenha = senha.encode("utf-8")
-          #  novaSenha = hashpw(novaSenha, salt)
-           # novaSenha = novaSenha.decode("utf-8")
-            #if chaveLigada:
-                #criarColaborador(
-                    #dadosFormularioCadastro['nomeColaborador'],
-                   # dadosFormularioCadastro['matriculaColaborador'],
-                    #dadosFormularioCadastro['emailColaborador'],
-                   # novaSenha
-               # )
-            #else:
-                #criarFornecedor(
-                 #   dadosFormularioCadastro['nomeFornecedor'],
-                  #  dadosFormularioCadastro['cnpjFornecedor'],
-                   # dadosFormularioCadastro['telefoneFornecedor'],
-                    #dadosFormularioCadastro['emailFornecedor'],
-                    #novaSenha
-                #)
-            #return redirect(url_for('login'))
-        
-    
-
-@app.route('/api/<idFornecedor>')
-def api(idFornecedor):
-    return buscarFornecedor(idFornecedor=idFornecedor)
-
-@app.route('/db/fornecedores')
-def tabelaFornecedores():
-    return exibirFornecedores()
-
-@app.route('/db/colaboradores')
-def tabelaColaboradores():
-    return exibirColaboradores()
+        if validarCadastro(
+            'colaborador' in request.form,
+            request.form['nome'],
+            request.form['cnpj/matricula'],
+            request.form['email'],
+            request.form['senha'],
+            request.form['confirmar_senha'],
+        ):
+            return redirect(url_for('homepage'))

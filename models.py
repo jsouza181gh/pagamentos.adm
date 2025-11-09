@@ -11,14 +11,12 @@ class Fornecedor(Base):
     id = Column('id', Integer, primary_key=True, autoincrement=True)
     nome = Column('nome', String(100), nullable=False)
     cnpj = Column('cnpj', String(20), nullable=False)
-    telefone = Column('telefone', String(30), nullable=False)
     email = Column('email', String(100), unique=True, nullable=False)
     senha = Column('senha', String(100), nullable=False)
 
-    def __init__(self, nome, cnpj, telefone, email, senha):
+    def __init__(self, nome, cnpj, email, senha):
         self.nome = nome
         self.cnpj = cnpj
-        self.telefone = telefone
         self.email = email
         self.senha = senha
 
