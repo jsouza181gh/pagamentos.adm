@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, flash
 from services import validarCadastro, validarLogin
 from main import app
 
@@ -8,7 +8,8 @@ def mainPage():
 
 @app.route('/homepage')
 def homepage():
-    return "Logado"
+    pagamentos = ["Pagamento 1", "Pagamento 2", "Pagamento 3"] # Exemplo de dados
+    return render_template('home.html', usuario="Usuário", pagamentos=pagamentos)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -20,7 +21,11 @@ def login():
             request.form['email'],
             request.form['senha']
         ):
+            flash('Login realizado com sucesso!', 'success')
             return redirect(url_for('homepage'))
+        else:
+            flash('Erro no login. Verifique suas informações e tente novamente.', 'danger')
+            return redirect(url_for('login'))
     
 
 @app.route('/cadastro', methods=['GET', 'POST'])
@@ -37,4 +42,8 @@ def cadastro():
             request.form['senha'],
             request.form['confirmar_senha'],
         ):
+            flash('Cadastro realizado com sucesso!', 'success')
             return redirect(url_for('homepage'))
+        else:
+            flash('Erro no cadastro. Verifique os dados e tente novamente.', 'danger')
+            return redirect(url_for('cadastro'))

@@ -1,8 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Pagamentos ADM - Komatsu</title>
+{% extends "index.html" %}
+{% block head %}
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,8 +45,8 @@
             background-color: #0056b3;
         }
     </style>
-</head>
-<body>
+{% endblock %}
+{% block body %}
     <div class="login-container">
         <h2>Login</h2>
         <form  method="POST">
@@ -64,5 +61,4 @@
         </br>
         <a href="/cadastro">Cadastrar</a>
     </div>
-</body>
-</html>
+{% endblock %}

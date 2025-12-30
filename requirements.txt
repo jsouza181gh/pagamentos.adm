@@ -1,13 +1,17 @@
 bcrypt==5.0.0
 blinker==1.9.0
 click==8.3.0
+dotenv==0.9.9
 Flask==3.1.2
+Flask-Login==0.6.3
 greenlet==3.2.4
 gunicorn==23.0.0
 itsdangerous==2.2.0
 Jinja2==3.1.6
 MarkupSafe==3.0.3
 packaging==25.0
+pillow==12.0.0
+python-dotenv==1.2.1
 setuptools @ file:///home/joaosouza/Documents/Projetos/pagamentos.adm/libs/setuptools-80.9.0-py3-none-any.whl#sha256=062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922
 SQLAlchemy==2.0.44
 typing_extensions==4.15.0

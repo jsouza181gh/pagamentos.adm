@@ -33,6 +33,7 @@ def criptografarSenha(senha):
     return novaSenha
 
 def validarLogin(email, senha):
+    #Criar função emailCadastrado() no repositories para validar se o email está cadastrado no banco
     try:
         hashSenha = buscarSenhaFornecedor(email)
     except:
