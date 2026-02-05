@@ -12,7 +12,7 @@ MarkupSafe==3.0.3
 packaging==25.0
 pillow==12.0.0
 python-dotenv==1.2.1
-setuptools @ file:///home/joaosouza/Documents/Projetos/pagamentos.adm/libs/setuptools-80.9.0-py3-none-any.whl#sha256=062d34222ad13e0cc312a4c02d73f059e86a4acbfbdea8f8f76b28c99f306922
+setuptools==80.9.0
 SQLAlchemy==2.0.44
 typing_extensions==4.15.0
 Werkzeug==3.1.3
