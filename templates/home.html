@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% block body %}
+<div>
+    <h1>Seja bem-vindo {{usuario}}!</h1>
+    <p>Você está Logado</p>
+</div>
+<div class="container">
+    {% if pagamentos %}
+        <h2>Pagamentos:</h2>
+        <ul>
+            {% for pagamento in pagamentos %}
+                <li>{{ pagamento }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Nenhum pagamento disponível.</p>
+    {% endif %}
+</div>
+{% endblock %}
